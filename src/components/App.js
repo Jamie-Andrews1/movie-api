@@ -13,7 +13,7 @@ class App extends React.Component {
     }
     
     onTermSubmit = async term => {
-      const response = await axios.get('http://www.omdbapi.com/', {
+      const response = await axios.get('https://www.omdbapi.com/', {
       params: {
         apikey:'e2297cad',
         s: term
