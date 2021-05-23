@@ -10,9 +10,6 @@ const SearchItem = ({ movie, onMovieSelect }) => {
           <img alt={movie.Title} src={movie.Poster} />
           <span className="card-title"><b>{movie.Year}</b></span>
         </div>
-        <div className="card-content">
-          <p>{movie.Title}</p>
-        </div>
       </div>
     </div>
   </div>
