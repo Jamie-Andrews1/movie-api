@@ -10,7 +10,9 @@ const SearchList = ({movies, onMovieSelect}) => {
     return <SearchItem key={movie.imdbID} onMovieSelect={onMovieSelect} movie={movie} />
   });
   return (
-    <div className="grid">{renderedList}</div>
+    <div className="grid">{renderedList}
+    </div>
+
   )
 };
 

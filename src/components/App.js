@@ -1,15 +1,17 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import SearchList from './SearchList';
-import axios from 'axios';
 import SearchDetail from './SearchDetail';
+import axios from 'axios';
 import imdb from '../apis/imdb';
+import './movie.css'
 
 class App extends React.Component {
     state = { movies: [], selectedMovie: null, plot: null};
-
+    
+    
     componentDidMount(){
-      this.onTermSubmit('Avengers')
+      this.onTermSubmit('Avengers');
     }
     
     onTermSubmit = async term => {
@@ -22,29 +24,28 @@ class App extends React.Component {
       this.setState({ movies: response.data.Search })
       
     }
-
     onMovieSelect = movie => {
-      this.setState({ selectedMovie: movie })
+      // this.setState({ selectedMovie: movie })
       this.moviePlot(movie)
     }
+
     moviePlot = async (movie) => {
     const response = await imdb.get('/', {
       params: {
-        i: movie.imdbID
-      }
+        i: movie.imdbID,
+        plot: 'full'
+       }
     })
     this.setState({plot: response.data})
   }
-  
+
   render() {
     return (
-    <div>
-      <SearchBar onFormSubmit={this.onTermSubmit} />
+    <div onClick={() => <SearchDetail/> ? this.setState({plot: ''}) && this.setState({ selectedMovie: ''}) : null}>
+        <SearchBar onFormSubmit={this.onTermSubmit} />
+        <SearchDetail movie={this.state.plot} />
       <div>
-        <div>
-          <SearchDetail movie={this.state.plot} />
-        </div>
-        <SearchList onMovieSelect={this.onMovieSelect} movies={this.state.movies} />
+        <SearchList  onMovieSelect={this.onMovieSelect} movies={this.state.movies} />
       </div>
     </div>
     )
