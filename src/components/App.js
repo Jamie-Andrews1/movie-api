@@ -9,7 +9,6 @@ import './movie.css'
 class App extends React.Component {
     state = { movies: [], selectedMovie: null, plot: null};
     
-    
     componentDidMount(){
       this.onTermSubmit('Avengers');
     }
@@ -25,7 +24,7 @@ class App extends React.Component {
       
     }
     onMovieSelect = movie => {
-      // this.setState({ selectedMovie: movie })
+      this.setState({ selectedMovie: movie })
       this.moviePlot(movie)
     }
 
@@ -38,17 +37,17 @@ class App extends React.Component {
     })
     this.setState({plot: response.data})
   }
-
+ 
   render() {
     return (
-    <div onClick={() => <SearchDetail/> ? this.setState({plot: ''}) && this.setState({ selectedMovie: ''}) : null}>
+    <div onClick={() => <SearchDetail /> ? this.setState({plot: ''}) : null}>
         <SearchBar onFormSubmit={this.onTermSubmit} />
         <SearchDetail movie={this.state.plot} />
       <div>
-        <SearchList  onMovieSelect={this.onMovieSelect} movies={this.state.movies} />
+        <SearchList onMovieSelect={this.onMovieSelect} movies={this.state.movies} />
       </div>
     </div>
     )
   }
-} 
+}
 export default App;

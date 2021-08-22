@@ -5,10 +5,15 @@ const SearchDetail =  ({ movie }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+
   }, [movie])
 
   if(!movie) {
-    return <div>{''}</div>
+    return (
+      <div>
+        {''}
+      </div>
+    )
   }
 
       return (
@@ -19,11 +24,10 @@ const SearchDetail =  ({ movie }) => {
             </div>
             <div className="card-content">
               <h2>Score {movie.imdbRating}</h2>
-              <p style={{maxWidth:'80ch', margin:'auto'}}><b>{`${movie.Plot}`}</b></p>
+              <p style={{maxWidth:'80ch', margin:'auto'}}><b>{ `${movie.Plot}`}</b></p>
             </div>
           </div>
         </div>
-        
       )
   }
   export default SearchDetail;
