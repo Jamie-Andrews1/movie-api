@@ -36,3 +36,15 @@ body {
 .card-image img {
   max-width: 350px;
 }
+.card-image :hover {
+  animation: grow 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}

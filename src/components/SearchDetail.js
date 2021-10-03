@@ -16,7 +16,7 @@ const SearchDetail =  ({ movie }) => {
     )
   }
 
-      return (
+      return ( 
         <div className="movie">
           <div className="card">
             <div className="card-image">
