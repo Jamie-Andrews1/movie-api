@@ -4,10 +4,11 @@ import SearchList from './SearchList';
 import SearchDetail from './SearchDetail';
 import axios from 'axios';
 import imdb from '../apis/imdb';
-import './movie.css'
+import './movie.css';
+const _ = require ('lodash');
 
 class App extends React.Component {
-    state = { movies: [], isLoading: true, plot: null};
+    state = { movies: [], plot: null};
     
     componentDidMount(){
       this.onTermSubmit('Avengers');
@@ -20,9 +21,11 @@ class App extends React.Component {
         s: term
       }
     });
-      this.setState({ movies: response.data.Search })
-      
-    }
+
+    const res = _.uniqBy(response.data.Search, 'imdbID')
+
+    this.setState({ movies: res })
+  } 
     onMovieSelect = movie => {
       this.moviePlot(movie)
     }
@@ -41,12 +44,11 @@ class App extends React.Component {
     return (
     <div onClick={() => <SearchDetail /> ? this.setState({plot: ''}) : null}>
         <SearchBar onFormSubmit={this.onTermSubmit} />
-        <SearchDetail movie={this.state.plot}  />
+        <SearchDetail movie={this.state.plot} />
       <div>
         <SearchList 
         onMovieSelect={this.onMovieSelect} 
         movies={this.state.movies} 
-        isLoading={this.state.isLoading}
         />
       </div>
     </div>
