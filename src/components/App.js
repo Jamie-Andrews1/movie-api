@@ -2,7 +2,6 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import SearchList from './SearchList';
 import SearchDetail from './SearchDetail';
-import axios from 'axios';
 import imdb from '../apis/imdb';
 import './movie.css';
 const _ = require ('lodash');
@@ -15,9 +14,8 @@ class App extends React.Component {
     }
     
     onTermSubmit = async term => {
-      const response = await axios.get('https://www.omdbapi.com/', {
+      const response = await imdb.get('/', {
       params: {
-        apikey:'e2297cad',
         s: term
       }
     });

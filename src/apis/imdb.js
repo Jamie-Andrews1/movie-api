@@ -1,8 +1,9 @@
 import axios from 'axios';
+require('dotenv').config({path: '/.env'});
 
 export default axios.create({
-  baseURL: 'https://www.omdbapi.com', 
+  baseURL: process.env.REACT_APP_URL,
   params: {
-    apikey:'e2297cad',
+    apikey: process.env.REACT_APP_API_KEY
   }
 });
