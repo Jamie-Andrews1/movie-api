@@ -12,18 +12,21 @@ class App extends React.Component {
     componentDidMount(){
       this.onTermSubmit('Avengers');
     }
-    
+
     onTermSubmit = async term => {
       const response = await imdb.get('/', {
       params: {
         s: term
       }
-    });
+    })
+    if(response.data.Response === "False") return     this.setState({ movies: false })
 
+    
     const res = _.uniqBy(response.data.Search, 'imdbID')
-
     this.setState({ movies: res })
-  } 
+
+  }
+  
     onMovieSelect = movie => {
       this.moviePlot(movie)
     }

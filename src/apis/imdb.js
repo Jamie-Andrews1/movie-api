@@ -6,4 +6,4 @@ export default axios.create({
   params: {
     apikey: process.env.REACT_APP_API_KEY
   }
-});
+})

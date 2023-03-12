@@ -7,7 +7,7 @@ const SearchItem = ({ movie, onMovieSelect }) => {
     <div className="col s12 m7" onClick={() => onMovieSelect(movie)}>
       <div className="card">
         <div className="card-image">
-          <img src={movie.Poster} alt={''} />
+          <img src={movie.Poster} alt={movie.Title} />
           <span className="card-title"><b style={{color:'red'}}>{movie.Year}</b></span>
         </div>
       </div>
